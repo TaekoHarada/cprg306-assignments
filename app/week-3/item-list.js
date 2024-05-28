@@ -90,16 +90,18 @@ export default function ItemList() {
 
   return (
     <main>
-      {items.map((item, index) => (
-        <div className="border-solid border border-indigo-500 mt-6 mx-3 p-3">
-          <Item
-            key={index}
-            name={item.name}
-            quantity={item.quantity}
-            category={item.category}
-          />
-        </div>
-      ))}
+      <div class="flex flex-wrap">
+        {items.map((item, index) => (
+          <div className="border-solid border border-indigo-500 mt-6 mx-3 p-3">
+            <Item
+              key={index}
+              name={item.name}
+              quantity={item.quantity}
+              category={item.category}
+            />
+          </div>
+        ))}
+      </div>
     </main>
   );
 }

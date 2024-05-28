@@ -7,13 +7,18 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main>
-      <h1 className="text-lg">CPRG 306: Web Development 2 - Assignments</h1>
-      <div>
-        <Link href="/week-2">week-2 page</Link>
-      </div>
-      <div>
-        <Link href="/week-3">week-3 page</Link>
-      </div>
+      <h1>CPRG 306: Web Development 2 - Assignments</h1>
+      <ul className="m-5">
+        <li className="pb-3">
+          <Link href="/week-2">→ week-2 page</Link>
+        </li>
+        <li className="pb-3">
+          <Link href="/week-3">→ week-3 page</Link>
+        </li>
+        <li className="pb-3">
+          <Link href="/week-4">→ week-4 page</Link>
+        </li>
+      </ul>
     </main>
   );
 }

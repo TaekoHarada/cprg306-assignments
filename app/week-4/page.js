@@ -1,9 +1,9 @@
-import StudentInfo from "./student-info";
+import NewItem from "./new-item";
 
 export default function Page() {
   return (
     <main>
-      <StudentInfo />
+      <NewItem />
     </main>
   );
 }
