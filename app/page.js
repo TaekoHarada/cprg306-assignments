@@ -18,6 +18,9 @@ export default function Home() {
         <li className="pb-3">
           <Link href="/week-4">→ week-4 page</Link>
         </li>
+        <li className="pb-3">
+          <Link href="/week-5">→ week-5 page</Link>
+        </li>
       </ul>
     </main>
   );
