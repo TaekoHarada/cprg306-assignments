@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export default function Page() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
-  const [loginUser, setLoginUser] = useState(null);
 
   useEffect(() => {
     const handleSignIn = async () => {
@@ -14,9 +13,8 @@ export default function Page() {
         if (!user) {
           const result = await gitHubSignIn();
           console.log(result);
-          setLoginUser(result.user);
         } else {
-          setLoginUser(user);
+          console.log("User is already signed in:", user);
         }
       } catch (error) {
         console.error("Error during sign-in:", error);
@@ -28,10 +26,10 @@ export default function Page() {
 
   return (
     <main>
-      {loginUser ? (
+      {user ? (
         <>
           <p>
-            Welcome, {loginUser.displayName} ({loginUser.email})
+            Welcome, {user.displayName} ({user.email})
           </p>
           <button onClick={firebaseSignOut}>Sign Out</button>
           <Link href="/week-8/shopping-list">Shopping List</Link>
