@@ -7,22 +7,35 @@ import Link from "next/link";
 export default function Page() {
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
-  useEffect(() => {
-    const handleSignIn = async () => {
-      try {
-        if (!user) {
-          const result = await gitHubSignIn();
-          console.log(result);
-        } else {
-          console.log("User is already signed in:", user);
-        }
-      } catch (error) {
-        console.error("Error during sign-in:", error);
+  const handleSignIn = async () => {
+    try {
+      if (!user) {
+        const result = await gitHubSignIn();
+        console.log(result);
+      } else {
+        console.log("User is already signed in:", user);
       }
-    };
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
+  };
 
-    handleSignIn();
-  }, [user, gitHubSignIn]);
+  const handleSignOut = async () => {
+    try {
+      if (user) {
+        const result = await firebaseSignOut();
+        console.log(result);
+      } else {
+        console.log("User is already signed out:", user);
+      }
+    } catch (error) {
+      console.error("Error during sign-out:", error);
+    }
+  };
+
+  // useEffect(() => {
+  //   handleSignIn();
+  // }, [user, gitHubSignIn]);
 
   return (
     <main>
@@ -31,11 +44,21 @@ export default function Page() {
           <p>
             Welcome, {user.displayName} ({user.email})
           </p>
-          <button onClick={firebaseSignOut}>Sign Out</button>
+          <button
+            onClick={handleSignOut}
+            className="bg-sky-500 hover:bg-sky-700 text-white font-bold text-sm py-2 px-4 rounded"
+          >
+            Sign Out
+          </button>
           <Link href="/week-8/shopping-list">Shopping List</Link>
         </>
       ) : (
-        <button onClick={gitHubSignIn}>Login with GitHub</button>
+        <button
+          onClick={handleSignIn}
+          className="bg-sky-500 hover:bg-sky-700 text-white font-bold text-sm py-2 px-4 rounded"
+        >
+          Login with GitHub
+        </button>
       )}
     </main>
   );
