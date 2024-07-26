@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useUserAuth } from "./_utils/auth-context";
 import Link from "next/link";
 
 export default function Page() {
-  const { user, signUp, signIn, firebaseSignOut } = useUserAuth();
+  const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
 
   const handleSignIn = async () => {
     try {
@@ -32,12 +33,20 @@ export default function Page() {
     }
   };
 
+  useEffect(() => {
+    if (user) {
+      console.log("User is signed in:", user);
+    } else {
+      console.log("User is signed out:", user);
+    }
+  }, [user]);
+
   return (
     <main>
       {user ? (
         <>
           <p>
-            Welcome, {user.displayName} ({user.email})
+            Welcome, {user.uid} ({user.email})
           </p>
           <button
             onClick={handleSignOut}
@@ -45,7 +54,7 @@ export default function Page() {
           >
             Sign Out
           </button>
-          <Link href="/week-8/shopping-list">Shopping List</Link>
+          <Link href="/week-10/shopping-list">Shopping List</Link>
         </>
       ) : (
         <button
